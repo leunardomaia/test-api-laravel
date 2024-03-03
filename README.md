@@ -14,9 +14,9 @@
 10. Arrumar variáveis do banco no .env
 11. $ php artisan migrate // cria tabela no banco
 12. Em routes/api.php setar a rota de users:
-	// Route::resources([
-	// 	 'users' => UserController::class,
-	// ]);
+	 Route::resources([
+	 	 'users' => UserController::class,
+	 ]);
 13. $ php artisan route:list  // para ver se as rotas de users estão disponíveis
 14. Usar header "accept = application/json" no postman para apenas respostas em Json
 15. Escrever os métodos do UserController
