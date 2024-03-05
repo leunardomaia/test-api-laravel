@@ -1,6 +1,11 @@
 1. Instalar PHP e Composer.
 2. $ composer global require laravel/installer
 3. * Descomentar fileinfo no php.ini
+3.
+  - $ composer global config bin-dir --absolute --quiet
+  - copie o resultado
+  - Agora, edite seu arquivo ~/.bashrc através do comando $ nano ~/.bashrc e adicione a seguinte linha:
+export PATH=$PATH:RESULTADO_DO_COMANDO_ANTERIOR
 4. $ laravel new minha-api
 5. $ cd minha-api
 6. $ php artisan serve //deveria estar disponível no navegador
