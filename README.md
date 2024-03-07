@@ -1,6 +1,6 @@
 # Api Laravel
 
-## Setup
+## Setup (Ubuntu/Mint)
 1. $ sudo apt-get install composer
 2. $ sudo apt-get install php8.1 php8.1-cli php8.1-common php8.1-imap php8.1-redis php8.1-snmp php8.1-xml php8.1-zip php8.1-mbstring php8.1-curl
 3. $ sudo apt-get install -y php-xml
