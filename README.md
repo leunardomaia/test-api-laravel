@@ -5,6 +5,7 @@
   - $ composer global config bin-dir --absolute --quiet
   - copie o resultado
   - Agora, edite seu arquivo ~/.bashrc através do comando $ nano ~/.bashrc e adicione a seguinte linha: export PATH=$PATH:RESULTADO_DO_COMANDO_ANTERIOR
+  - $ source ~/.bashrc
 5. $ laravel new minha-api
 6. $ cd minha-api
 7. $ php artisan serve //deveria estar disponível no navegador
