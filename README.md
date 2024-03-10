@@ -8,12 +8,7 @@
 5. $ composer create-project laravel/laravel minha-api
 6. $ cd minha-api
 7. $ php artisan serve //deveria estar disponível no navegador
-8. Instale um SGBD (MySQL, PostgreSQL, etc)
-
-## Setup Dockerizado
-1. Cole o Dockerfile, docker-compose.yml e /docker-compose/nginx/server.conf na raiz do projeto
-2.  $ docker-compose up --build
-3.  Use `$ docker-compose exec -it php bash"` para entrar no container "php" e poder executar os comandos "php artisan..." na construção da API
+8. Suba o MariaDB e o Adminer com `$ docker-compose up -d` na raiz do projeto
 
 ## API
 1. $ php artisan make:resource
