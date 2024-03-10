@@ -1,0 +1,35 @@
+version: "3"
+services:
+  php:
+    build: .
+    container_name: "php"
+    image: php:8.2-fpm
+    volumes:
+      - ./:/var/www/
+
+  nginx:
+    image: nginx:alpine
+    container_name: "nginx"
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+
+  db:
+    image: mariadb:10.5
+    container_name: "mariadb-server"
+    restart: always
+    environment:
+      - MARIADB_USER=root
+      - MARIADB_ROOT_PASSWORD=123
+  
+  adminer:
+    image: adminer:4.8.1
+    container_name: "adminer"
+    restart: always
+    ports:
+      - 8080:8080
+
+  
