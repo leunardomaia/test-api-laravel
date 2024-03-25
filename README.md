@@ -28,7 +28,6 @@
 8. Usar header "accept = application/json" no postman para apenas respostas em Json
 9. Escrever os métodos do UserController
 
-links: 
-    - Playlist Laravel 10 + Sanctum: https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW
-	- https://laravel.com/docs/10.x/eloquent-resources
-	- https://www.youtube.com/watch?v=0TnToyz3dn0&t=368s
+## [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
+## [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
+## [Vídeo](https://www.youtube.com/watch?v=0TnToyz3dn0&t=368s)
