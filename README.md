@@ -2,13 +2,11 @@
 
 ## Setup (Ubuntu/Mint)
 1. $ sudo apt-get install composer
-2. $ sudo apt-get install php8.1 php8.1-cli php8.1-common php8.1-imap php8.1-redis php8.1-snmp php8.1-xml php8.1-zip php8.1-mbstring php8.1-curl
-3. $ sudo apt-get install -y php-xml
-4. $ sudo apt-get install -y php-gd
-5. $ composer create-project laravel/laravel minha-api
-6. $ cd minha-api
-7. $ php artisan serve //deveria estar disponível no navegador
-8. Suba o MariaDB e o Adminer com `$ docker-compose up -d` na raiz do projeto
+2. $ sudo apt-get install php8.1-xml php8.1-zip php8.1-mbstring php8.1-curl
+3. $ composer create-project laravel/laravel minha-api
+4. $ cd minha-api
+5. $ php artisan serve //deveria estar disponível no navegador
+6. Suba o MariaDB e o Adminer com `$ docker-compose up -d` na raiz do projeto
 
 ## API
 1. $ php artisan make:resource
