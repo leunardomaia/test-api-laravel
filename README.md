@@ -2,7 +2,7 @@
 
 ## Setup (Ubuntu/Mint)
 1. $ sudo apt-get install composer
-2. $ sudo apt-get install php8.1-xml php8.1-zip php8.1-mbstring php8.1-curl
+2. $ sudo apt-get install php8.1-xml php8.1-zip php8.1-curl
 3. $ composer create-project laravel/laravel minha-api
 4. $ cd minha-api
 5. $ php artisan serve //deveria estar disponível no navegador
