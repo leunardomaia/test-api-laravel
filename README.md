@@ -28,4 +28,4 @@
 
 ## [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
 ## [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
-## [Vídeo rápido (sem autenticação)](https://www.youtube.com/watch?v=0TnToyz3dn0&t=368s)
+
