@@ -4,7 +4,7 @@
 #### 1. Instalar Composer: 
     $ sudo apt-get install composer
 #### 2. Instalar extensões do PHP necessárias:
-    $ sudo apt-get install php8.1-xml php8.1-zip php8.1-curl
+    $ sudo apt-get install php8.1-xml php8.1-zip php8.1-curl php8.1-mysql
 #### 3. Criar o projeto Lavarel:
     $ composer create-project laravel/laravel minha-api
 #### 4. Entrar na pasta do projeto:
