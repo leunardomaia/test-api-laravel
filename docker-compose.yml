@@ -10,11 +10,9 @@ services:
     ports:
       - 3307:3306
   
- *Caso não tenha MySQL WorkBench na máquina, utilizar container abaixo*
-
   adminer:
     image: adminer:4.8.1
     container_name: "adminer"
     restart: always
     ports:
-      - 8080:8080
+    - 8080:8080

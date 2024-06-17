@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Http\Resources\TarefaResource;
+use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class TarefaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return UserResource::collection(User::all());
+        return TarefaResource::collection(Tarefa::all());
     }
 
     /**
@@ -29,7 +30,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'titulo' => 'required',
+            'descricao' => 'required',
+            'data_limite' => 'required',
+        ]);
+
+        if($validator->fails()) 
+        {
+            return response()->json($validator->errors(), status: 400);
+        }
     }
 
     /**
@@ -37,7 +48,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return new UserResource(User::where('id', $id)->first());
+        return new TarefaResource(Tarefa::where('id', $id)->first());
     }
 
     /**
