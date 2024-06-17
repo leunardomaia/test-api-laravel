@@ -22,13 +22,15 @@
     DB_CONNECTION=mysql
 	DB_HOST=127.0.0.1
 	DB_PORT=3307
-	DB_DATABASE=tarefas
+	DB_DATABASE=tarefa
 	DB_USERNAME=root
 	DB_PASSWORD=123
 
-#### 3. Executar “php artisan install:api”
+#### 3. Caso não possua "routes/api.php" execute:
+    $ php artisan install:api
 
-#### 4. Criar model, factory e migration de Tarefa: "php artisan make:model Tarefa -fm"
+#### 4. Criar model e migration de Tarefa: 
+    $ php artisan make:model Tarefa -m
 
 #### 5. Adicionar campos de Tarefa na migration de criação da tabela:
         $table->unsignedBigInteger('user_id');
@@ -39,11 +41,11 @@
         $table->boolean('concluida')->default(false);
 
 #### 6. Efetuar migração: 
-	php artisan migrate
+	$ php artisan migrate
 
 #### 7. Criar controllers:
-	php artisan make:controller TarefaController --resource
-	php artisan make:controller UserController --resource
+	$ php artisan make:controller TarefaController --resource
+	$ php artisan make:controller UserController --resource
 
 #### 8. Código do método index do UserController:
 	return User::all();
@@ -54,8 +56,8 @@
 #### 10. Acessar http://localhost:8000/api/users
 
 #### 11. Criar resources:
-	php artisan make:resource UserResource
-	php artisan make:resource TarefaResource
+	$ php artisan make:resource UserResource
+	$ php artisan make:resource TarefaResource
 
 #### 12. Código do método toArray do UserResource:
 	 return [
