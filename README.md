@@ -9,8 +9,8 @@
     $ composer create-project laravel/laravel minha-api
 #### 4. Entrar na pasta do projeto:
     $ cd minha-api
-#### 5. Subir o servidor: 
-    $ php artisan serve //deveria estar disponível no navegador
+#### 5. Subir o servidor: (deveria estar disponível no navegador) 
+    $ php artisan serve
 #### 6. Subir o MariaDB e Adminer com Docker (colocar o docker-compose.yml desse repositório na raiz do projeto):
     $ docker-compose up -d
 
