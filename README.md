@@ -1,30 +1,108 @@
 # Api Laravel
 
 ## Setup (Ubuntu/Mint)
-1. $ sudo apt-get install composer
-2. $ sudo apt-get install php8.1-xml php8.1-zip php8.1-curl
-3. $ composer create-project laravel/laravel minha-api
-4. $ cd minha-api
-5. $ php artisan serve //deveria estar disponível no navegador
-6. Suba o MariaDB e o Adminer com `$ docker-compose up -d` na raiz do projeto
+#### 1. Instalar Composer: 
+    $ sudo apt-get install composer
+#### 2. Instalar extensões do PHP necessárias:
+    $ sudo apt-get install php8.1-xml php8.1-zip php8.1-curl
+#### 3. Criar o projeto Lavarel:
+    $ composer create-project laravel/laravel minha-api
+#### 4. Entrar na pasta do projeto:
+    $ cd minha-api
+#### 5. Subir o servidor: 
+    $ php artisan serve //deveria estar disponível no navegador
+#### 6. Subir o MariaDB e Adminer com Docker (colocar o docker-compose.yml desse repositório na raiz do projeto):
+    $ docker-compose up -d
 
 ## API
-1. $ php artisan make:resource
-	- nome: UserResource
-2. Arrumar o retorno da resource
-3. $ php artisan make:controller
-	- nome: UserController
-	- tipo: api
-	- criar model: User
-4. Arrumar variáveis do banco no .env
-5. $ php artisan migrate // cria tabela no banco
-6. Em routes/api.php setar a rota de users:
-	 Route::resources([
-	 	 'users' => UserController::class,
-	 ]);
-7. $ php artisan route:list  // para ver se as rotas de users estão disponíveis
-8. Usar header "accept = application/json" no postman para apenas respostas em Json
-9. Escrever os métodos do UserController
+
+#### 1. Criar banco de dados "tarefa"
+
+#### 2. Adicionar dados do banco ao arquivo .env:
+    DB_CONNECTION=mysql
+	DB_HOST=127.0.0.1
+	DB_PORT=3307
+	DB_DATABASE=tarefas
+	DB_USERNAME=root
+	DB_PASSWORD=123
+
+#### 3. Executar “php artisan install:api”
+
+#### 4. Criar model, factory e migration de Tarefa: "php artisan make:model Tarefa -fm"
+
+#### 5. Adicionar campos de Tarefa na migration de criação da tabela:
+        $table->unsignedBigInteger('user_id');
+        $table->foreign('user_id')->references('id')->on('users');
+        $table->string('titulo');
+        $table->text('descricao');
+        $table->date('data_limite');
+        $table->boolean('concluida')->default(false);
+
+#### 6. Efetuar migração: 
+	php artisan migrate
+
+#### 7. Criar controllers:
+	php artisan make:controller TarefaController --resource
+	php artisan make:controller UserController --resource
+
+#### 8. Código do método index do UserController:
+	return User::all();
+
+#### 9. Rota do método index do UserController no api.php:
+	Route::get('/users',[UserController::class,'index']);
+
+#### 10. Acessar http://localhost:8000/api/users
+
+#### 11. Criar resources:
+	php artisan make:resource UserResource
+	php artisan make:resource TarefaResource
+
+#### 12. Código do método toArray do UserResource:
+	 return [
+            'id' => $this->id,
+            'nome' => $this->name,
+            'email' => $this->email,
+        ];
+
+#### 13. Código do método index do UserController:
+	return UserResource::collection(User::all());
+
+#### 14. Código do método show do UserController:
+	return new UserResource(User::where('id', $id)->first());
+
+#### 15. Rota do método show do UserController no api.php:
+	Route::get('/users/{user}',[UserController::class,'show']);
+
+#### 16. Código do método index do TarefaController:
+        return TarefaResource::collection(Tarefa::all());
+
+#### 17. Código do método show do TarefaController:
+        return new TarefaResource(Tarefa::where('id', $id)->first());
+
+#### 18. Rota dos método index e show do TarefaController no api.php:
+	Route::get('/tarefas',[TarefaController::class,'index']);
+	Route::get('/tarefas/{tarefa}',[TarefaController::class,'show']);
+
+#### 19. Adicionar método "user" em Tarefa:
+	public function user()
+	{
+        	return $this->belongsTo(User::class);
+	}
+
+#### 20. Código do método toArray do TarefaResource:
+	return [
+            'id' => $this->id,
+            'usuario' => [
+                'id' => $this->user->id,
+                'nome' => $this->user->name,
+                'email' => $this->user->email,
+            ],
+            'titulo' => $this->titulo,
+            'descricao' => $this->descricao,
+            'data_limite' => Carbon::parse($this->data_limite)->format('d/m/Y'),
+            'status' => $this->concluida ? 'Concluída' : 'Pendente',
+        ];
+
 
 ## [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
 ## [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
