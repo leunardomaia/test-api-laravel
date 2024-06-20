@@ -34,13 +34,18 @@ class TarefaController extends Controller
             'user_id' => 'required',
             'titulo' => 'required',
             'descricao' => 'required',
-            'data_limite' => 'required',
+            'data_limite' => 'required|date_format:Y/m/d',
+            'concluida' =>  'numeric|between:0,1',
         ]);
 
         if($validator->fails()) 
         {
             return response()->json($validator->errors(), status: 400);
         }
+
+        $tarefa = Tarefa::create($validator->validate());
+
+        return response()->json(new TarefaResource($tarefa), 201);
     }
 
     /**
@@ -64,7 +69,33 @@ class TarefaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $tarefa = Tarefa::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'titulo' => 'required',
+            'descricao' => 'required',
+            'data_limite' => 'required|date_format:Y/m/d',
+            'concluida' =>  'numeric|between:0,1'
+        ]);
+
+        if($validator->fails()) 
+        {
+            return response()->json($validator->errors(), status: 400);
+        }
+
+        $validated = $validator->validate();
+
+        $tarefa->update([
+            'user_id' => $validated['user_id'],
+            'titulo' => $validated['titulo'],
+            'descricao' => $validated['descricao'],
+            'data_limite' => $validated['data_limite'],
+            'concluida' => $validated['concluida'],
+        ]);
+
+        return new TarefaResource($tarefa);
     }
 
     /**
@@ -72,6 +103,15 @@ class TarefaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tarefa = Tarefa::find($id);
+
+        if (!$tarefa) {
+            return response()->json(['mensagem' => 'Tarefa não encontrada.'], status: 404);
+        }
+        
+        $tarefa->delete();
+
+        return response()->json(['mensagem' => 'Tarefa removida.']);
+
     }
 }
