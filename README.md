@@ -296,5 +296,5 @@
 
 ## LINKS RELEVANTES
 
-## [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
-## [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
+### [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
+### [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
