@@ -222,14 +222,13 @@
 	
 #### 33. No Postman enviar requisição http para http://localhost:8000/api/tarefas/1 utilizando o método DELETE (Deve remover na primeira tentativa e falhar na segunda);
 
+
 ## AUTENTICAÇÃO
 
-Rota do método store do UserController no api.php:
-Route::post('/users', [UserController::class, 'store']);
+### 1. Rota do método store do UserController no api.php:
+    Route::post('/users', [UserController::class, 'store']);
 
-
-
-Código do método store do UserController:
+### 2. Código do método store do UserController:
        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
@@ -245,27 +244,21 @@ Código do método store do UserController:
 
         return response()->json(new UserResource($tarefa), 201);
 
-No Postman enviar requisição http para http://localhost:8000/api/users utilizando o método POST com o seguinte JSON no corpo:
-{
-    "name": "Leo",
-    "email": "leo@email.com",
-    "password": "senha"
-}
+### 3. No Postman enviar requisição http para http://localhost:8000/api/users utilizando o método POST com o seguinte JSON no corpo:
+    {
+        "name": "Leo",
+        "email": "leo@email.com",
+        "password": "senha"
+    }
 
-
-Criar controller de autenticação:
+### 4. Criar controller de autenticação:
 		$ php artisan make:controller AuthController
 
+### 5. Rota do método login do AuthController no api.php:
+    Route::post('/login', [AuthController::class, 'login']);
 
-
-Rota do método login do AuthController no api.php:
-Route::post('/login', [AuthController::class, 'login']);
-
-
-	
-
-Código do método login do AuthController :
-  public function login(Request $request) {
+### 6. Código do método login do AuthController :
+    public function login(Request $request) {
         if (Auth::attempt($request->only('email','password'))) {
             $token = $request->user()->createToken('tarefa')->plainTextToken;
             return response()->json(['mensagem' => 'Autorizado.', 'token' => $token], status: 200);
@@ -273,37 +266,33 @@ Código do método login do AuthController :
         return response()->json(['mensagem' => 'Não autorizado.'], status: 401);
     }
 
+### 7. No Postman enviar requisição http para http://localhost:8000/api/login utilizando o método POST com o seguinte JSON no corpo:
+    {
+        "email":"leo@email.com",
+        "password":"senha"
+    }
 
-No Postman enviar requisição http para http://localhost:8000/api/login utilizando o método POST com o seguinte JSON no corpo:
-{
-    "email":"leo@email.com",
-    "password":"senha"
-}
+### 8. Alterar rota do método index do UserController no api.php para ter autenticação:
 
-Alterar rota do método index do UserController no api.php para ter autenticação:
+    Route::get('/users', [UserController::class, 'index'])->middleware('auth:sanctum');
 
-Route::get('/users', [UserController::class, 'index'])->middleware('auth:sanctum');
+### 9. No Postman enviar requisição http para http://localhost:8000/api/users utilizando o método GET. Deveria falhar.
 
-No Postman enviar requisição http para http://localhost:8000/api/users utilizando o método GET e provavelmente falhará;
+### 10. No Postman enviar a mesma requisição novamente porém adicione o Header “Authorization” com o valor “Bearer ” somado ao token recebido no login, como no exemplo abaixo (substitua pelo seu token):
+    Bearer 7|9syvshUtPgYkhtoDudPG9NdxlEGOwdXnPrsO1J6ke32ef22f
 
-No Postman enviar a mesma requisição novamente porém adicione o Header “Authorization” com o valor “Bearer ” somado ao token recebido no login, como no exemplo abaixo (substitua pelo seu token):
-Bearer 7|9syvshUtPgYkhtoDudPG9NdxlEGOwdXnPrsO1J6ke32ef22f
+### 11. Adicionar rota do método logout do AuthController no api.php com autenticação:
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Adicionar rota do método logout do AuthController no api.php com autenticação:
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-
-Código do método logout do AuthController :
-public function logout(Request $request) {
+### 12. Código do método logout do AuthController :
+    public function logout(Request $request) {
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['mensagem' => 'Token removido.'], status: 200);
     }
 
-
-No Postman enviar requisição http para http://localhost:8000/api/logout utilizando o método POST com um token válido no Header “Authorization”, como no exemplo abaixo (substitua pelo seu token): 
-Bearer 7|9syvshUtPgYkhtoDudPG9NdxlEGOwdXnPrsO1J6ke32ef22f
-
-
+### 13. No Postman enviar requisição http para http://localhost:8000/api/logout utilizando o método POST com um token válido no Header “Authorization”, como no exemplo abaixo (substitua pelo seu token): 
+    Bearer 7|9syvshUtPgYkhtoDudPG9NdxlEGOwdXnPrsO1J6ke32ef22f
 
 
 ## [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
