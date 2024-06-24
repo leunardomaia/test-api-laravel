@@ -15,4 +15,10 @@ class AuthController extends Controller
         }
         return response()->json(['mensagem' => 'Não autorizado.'], status: 401);
     }
+
+    public function logout(Request $request) {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['mensagem' => 'Token removido.'], status: 200);
+    }
 }

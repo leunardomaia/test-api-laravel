@@ -21,4 +21,5 @@ Route::put('/tarefas/{tarefa}', [TarefaController::class, 'update']);
 Route::delete('/tarefas/{tarefa}', [TarefaController::class, 'destroy']);
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
