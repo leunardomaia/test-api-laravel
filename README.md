@@ -1,6 +1,8 @@
-# Api Laravel
+# Tutorial: Api Laravel
 
-## Setup (Ubuntu/Mint)
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+## Setup (Ubuntu/Mint) ⚙️
 #### 1. Instalar Composer: 
     $ sudo apt-get install composer
 #### 2. Instalar extensões do PHP necessárias:
@@ -14,7 +16,7 @@
 #### 6. Subir o MariaDB e Adminer com Docker (colocar o docker-compose.yml desse repositório na raiz do projeto):
     $ docker-compose up -d
 
-## API
+## API 🌐
 
 #### 1. Criar banco de dados "tarefa"
 
@@ -223,7 +225,7 @@
 #### 33. No Postman enviar requisição http para http://localhost:8000/api/tarefas/1 utilizando o método DELETE (Deve remover na primeira tentativa e falhar na segunda);
 
 
-## AUTENTICAÇÃO
+## AUTENTICAÇÃO 🔒
 
 ### 1. Rota do método store do UserController no api.php:
     Route::post('/users', [UserController::class, 'store']);
@@ -294,7 +296,7 @@
 ### 13. No Postman enviar requisição http para http://localhost:8000/api/logout utilizando o método POST com um token válido no Header “Authorization”, como no exemplo abaixo (substitua pelo seu token): 
     Bearer 7|9syvshUtPgYkhtoDudPG9NdxlEGOwdXnPrsO1J6ke32ef22f
 
-## LINKS RELEVANTES
+## LINKS RELEVANTES 🔗
 
 ### [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
 ### [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
