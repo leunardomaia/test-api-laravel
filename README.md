@@ -294,6 +294,7 @@
 ### 13. No Postman enviar requisição http para http://localhost:8000/api/logout utilizando o método POST com um token válido no Header “Authorization”, como no exemplo abaixo (substitua pelo seu token): 
     Bearer 7|9syvshUtPgYkhtoDudPG9NdxlEGOwdXnPrsO1J6ke32ef22f
 
+## LINKS RELEVANTES
 
 ## [Playlist Laravel 10 + Sanctum](https://youtube.com/playlist?list=PLyugqHiq-SKdFqLIM3HgCAnG8_7wUqHMm&si=4gpAFCGIKirXCNVW)
 ## [Documentação](https://laravel.com/docs/10.x/eloquent-resources)
