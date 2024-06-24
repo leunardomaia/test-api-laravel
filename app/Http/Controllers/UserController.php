@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -14,8 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::all());
-    }
+        return User::all();    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,20 +27,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        if($validator->fails()) 
-        {
-            return response()->json($validator->errors(), status: 400);
-        }
-
-        $tarefa = User::create($validator->validate());
-
-        return response()->json(new UserResource($tarefa), 201);
+        //
     }
 
     /**
@@ -51,7 +35,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return new UserResource(User::where('id', $id)->first());
+        //
     }
 
     /**
