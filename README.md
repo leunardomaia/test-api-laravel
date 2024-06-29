@@ -50,10 +50,12 @@
 	$ php artisan make:controller UserController --resource
 
 #### 8. Código do método index do UserController:
-	return User::all();
+    return User::all();
+- adicionar import: use App\Models\User;
 
 #### 9. Rota do método index do UserController no api.php:
 	Route::get('/users',[UserController::class,'index']);
+- adicionar import: use App\Http\Controllers\UserController;
 
 #### 10. Acessar http://localhost:8000/api/users
 
@@ -70,6 +72,7 @@
 
 #### 13. Código do método index do UserController:
 	return UserResource::collection(User::all());
+ - adicionar import: use App\Http\Resources\UserResource;
 
 #### 14. Código do método show do UserController:
 	return new UserResource(User::where('id', $id)->first());
@@ -79,6 +82,8 @@
 
 #### 16. Código do método index do TarefaController:
         return TarefaResource::collection(Tarefa::all());
+- adicionar import: use App\Http\Resources\TarefaResource;
+- adicionar import: use App\Models\Tarefa;
 
 #### 17. Código do método show do TarefaController:
         return new TarefaResource(Tarefa::where('id', $id)->first());
@@ -86,6 +91,7 @@
 #### 18. Rota dos método index e show do TarefaController no api.php:
 	Route::get('/tarefas',[TarefaController::class,'index']);
 	Route::get('/tarefas/{tarefa}',[TarefaController::class,'show']);
+- adicionar import: use App\Http\Controllers\TarefaController;
 
 #### 19. Adicionar método "user" em Tarefa:
 	public function user()
@@ -106,6 +112,7 @@
             'data_limite' => Carbon::parse($this->data_limite)->format('d/m/Y'),
             'status' => $this->concluida ? 'Concluída' : 'Pendente',
         ];
+- adicionar import: use Carbon\Carbon;
 
 #### 21. Rota do método store do TarefaController no api.php:
     Route::post('/tarefas',[TarefaController::class, 'store']);
@@ -132,7 +139,7 @@
 
 
 #### 24. Instalar o Postman:
-    $ comando
+    $ sudo snap install postman
 
 #### 25. No Postman enviar requisição http para http://localhost:8000/api/tarefas utilizando o método POST com o seguinte JSON no corpo:
     {
@@ -158,7 +165,7 @@
             {
                 return response()->json($validator->errors(), status: 400);
             }
-
+- adicionar import: use Illuminate\Support\Facades\Validator;
 
 #### 27. Simplificar o restante do método store do TarefaController:
     $tarefa = Tarefa::create($validator->validate());
@@ -208,8 +215,6 @@
 #### 31. Rota do método destroy do TarefaController no api.php:
 	Route::delete('/tarefas/{tarefa}',[TarefaController::class, 'destroy']);
 
-
-
 #### 32. Código do método destroy do TarefaController:
 	    $tarefa = Tarefa::find($id);
 
@@ -258,7 +263,8 @@
 
 ### 5. Rota do método login do AuthController no api.php:
     Route::post('/login', [AuthController::class, 'login']);
-
+- adicionar import: use App\Http\Controllers\AuthController;
+  
 ### 6. Código do método login do AuthController :
     public function login(Request $request) {
         if (Auth::attempt($request->only('email','password'))) {
@@ -267,6 +273,7 @@
         }
         return response()->json(['mensagem' => 'Não autorizado.'], status: 401);
     }
+- adicionar import: use Illuminate\Support\Facades\Auth;
 
 ### 7. No Postman enviar requisição http para http://localhost:8000/api/login utilizando o método POST com o seguinte JSON no corpo:
     {
